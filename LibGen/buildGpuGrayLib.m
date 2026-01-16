@@ -1,6 +1,6 @@
 deviceAddress = '196.xx.xxx.xxx'; 
-userName = 'jetson';
-password = 'jetson';
+userName = 'DeviceName';
+password = 'DevicePassword';
 hwobj = jetson(deviceAddress,userName,password);
 
 % Configure GPU environment
@@ -25,5 +25,6 @@ inputSize = zeros(720, 1280, 3, 'uint8');
 codegen -config cfg gpuGrayscale -args {inputSize} -report
 
 fprintf("\n Library built successfully.\n");
+
 
 
