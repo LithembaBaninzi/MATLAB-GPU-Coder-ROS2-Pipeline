@@ -1,8 +1,8 @@
-function buildingGrayCam()
-    deviceAddress = '196.24.150.228';
-    userName = 'jetson';
-    password = 'jetson';
-    hwobj = jetson(deviceAddress, userName, password);
+function buildingGrayCam(
+    deviceAddress = '196.xx.xxx.xxx'; 
+    userName = 'DeviceName';
+    password = 'DevicePassword';
+    hwobj = jetson(deviceAddress,userName,password);
 
     % Configure GPU environment
     envCfg = coder.gpuEnvConfig('jetson');
@@ -19,7 +19,7 @@ function buildingGrayCam()
     cfg.GenerateReport = true;
 
     % Link external CUDA library
-    libPath = 'C:\Users\lithe\OneDrive\BNNLIT002\Documents\MATLAB\2025_Dec_Vac_Work\project3\codegen\dll\gpuGrayscale';
+    libPath = 'C:\projectPath\project3\codegen\dll\gpuGrayscale';
     cfg.CustomInclude = {libPath};
     cfg.CustomLibrary = {fullfile(libPath, 'gpuGrayscale.so')};
     cfg.CustomSourceCode = '#include "gpuGrayscale.h"';
@@ -37,3 +37,4 @@ function buildingGrayCam()
     fprintf('Application running on Jetson with PID: %d\n', pid);
   
 end
+
