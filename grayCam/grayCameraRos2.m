@@ -1,10 +1,10 @@
 function grayCameraRos2()
 %#codegen
 % Jetson standalone ROS2 publisher: camera + CUDA grayscale
-    deviceAddress = '196.24.150.228';
-userName = 'jetson';
-password = 'jetson';
-hwobj = jetson(deviceAddress, userName, password);
+    deviceAddress = '196.xx.xxx.xxx';
+    userName = 'jetsonName';
+    password = 'jetsonPassword';
+    hwobj = jetson(deviceAddress, userName, password);
 
     % --- External includes ---
     coder.cinclude('gpuGrayscale.h');
@@ -14,9 +14,6 @@ hwobj = jetson(deviceAddress, userName, password);
     % --- ROS2 setup ---
     node = ros2node("/jetson_cuda_camera_node");
     pub  = ros2publisher(node, "/camera/image_gray", "sensor_msgs/Image");
-
-    % --- Camera config ---
-    %hwobj = jetson;
 
     % Jetson camera configuration
     camName = 'vi-output, imx219 6-0010';
@@ -66,3 +63,4 @@ hwobj = jetson(deviceAddress, userName, password);
     fprintf('All frames captured, processed and published.\n');
     
 end
+
