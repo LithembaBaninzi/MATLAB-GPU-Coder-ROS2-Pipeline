@@ -107,9 +107,61 @@ After you have successfully tested your library with CUDA alone, you can move to
     ros2 run graycameraros2 grayCameraRos2
     ```
     After a successful build and install an executable ***grayCameraRos2*** will be installed under:<br>
-    /home/jetson/ros2_ws/install/graycameraros2/lib/graycameraros2
- 7. To verify 
+    /home/jetson/ros2_ws/install/graycameraros2/lib/graycameraros2<br>
+    You should see an output like this at the end after a successful build:
+    ``` bash
+    --- Finished <<< graycameraros2 [2min 15s]
+    Summary: 1 package finished [2min 20s]
+      1 package had stderr output:graycameraros2
+ 8. To verify publishing
+    Run this in another terminal (after sourcing ROS 2):
+    ``` bash
+    ros2 topic list
+    ```
+    You should see:
+    ``` bash
+    /camera/image_gray
+    ```
+    Then check if messages are arriving:
+    ``` bash
+    ros2 topic echo /camera/image_gray
+    ```
+    If you get raw byte dumps or structured message output (header: …, data: …), publishing works fine.
+
+    **ALTERNATIVELY**, you could set up a MATLAB subscriber script to visualize the image data being published as seen in *ros2GraySub.m* file in the grayCam folder.
+    
 ## Common Errors and Fixes 
+1. When you are trying to build and get this output at the end:
+   ``` bash
+   /usr/bin/ld: cannot find -lgpuGrayscale
+   /usr/bin/ld: cannot find -lcublas
+   /usr/bin/ld: cannot find -lcurand
+   /usr/bin/ld: cannot find -lcusolver
+   /usr/bin/ld: cannot find -lcusparse
+   ```
+   This means the system linker can't find those .so libraries in the expected search paths.<br>
+   Locate where they actually are.<br>
+   Run this on your Jetson:
+   ``` bash
+   sudo find /usr -name "libcublas.so" -o -name "libcurand.so" -o -name "libcusolver.so" -o -name "libcusparse.so"
+   ```
+   That will search the entire /usr tree and print out the full paths.<br>
+   On Jetson devices, these are typically found in:
+   ``` bash
+   /usr/local/cuda-10.2/targets/aarch64-linux/lib
+   ```
+   Once you know the exact paths, we’ll add a single ***link_directories()*** line to your CMakeLists.txt pointing there      (e.g.,/usr/local/cuda-10.2/targets/aarch64-linux/lib), which will fix all the CUDA library linking errors in one go.<br>
+   If you still get an error, specify the full paths for CUDA libs under ***target_link_libraries(...)***:
+   ``` bash
+   target_link_libraries(grayCameraRos2
+          ${GSTREAMER_APP_1_0GSTREAMER_VIDEO_1_0_LIBRARIES}
+          ${CMAKE_CURRENT_SOURCE_DIR}/lib/libgpuGrayscale.so
+          SDL
+          /usr/local/cuda-10.2/targets/aarch64-linux/lib/libcublas.so
+          /usr/local/cuda-10.2/targets/aarch64-linux/lib/libcurand.so
+          /usr/local/cuda-10.2/targets/aarch64-linux/lib/libcusolver.so
+          /usr/local/cuda-10.2/targets/aarch64-linux/lib/libcusparse.so
+   )
 1. If you are trying to run an executable on the Jetson and you get this error:
    ```c
    Camera = 0 in 657
