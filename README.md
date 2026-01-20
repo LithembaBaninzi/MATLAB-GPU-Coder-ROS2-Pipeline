@@ -24,7 +24,7 @@ Verify installed tools
     * codegen/dll/gpuGrayscale/gpuGrayscale.so
     * codegen/dll/gpuGrayscale/gpuGrayscale.h
     * codegen/dll/gpuGrayscale/gpuGrayscale.cu
-- **Note:** *you won't see libgpuGrayscale.so in your PC, but it should be available in the Jetson*
+- **Note:** *you will see gpuGrayscale.so in your PC, and it should be available in the Jetson under the same path*
     * MATLAB Output:
       - Output file: C:\projectPath\codegen\dll\gpuGrayscale\gpuGrayscale.so
 
