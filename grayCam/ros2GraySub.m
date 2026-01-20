@@ -1,6 +1,6 @@
 clear;
 % Set the ROS_DOMAIN_ID to the appropriate value (e.g., 0)
-setenv('196.24.150.228', '0');
+setenv('196.xx.xxx.xxx', '0');
 
 % Create a ROS 2 node with the correct domain ID
 ros2node = ros2node("/matlab_subscriber", 0); % Use a numeric domain ID
@@ -40,3 +40,4 @@ end
 % Clean up
 clear sub;
 clear ros2node;
+
