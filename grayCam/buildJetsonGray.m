@@ -1,7 +1,7 @@
 clear; 
-deviceAddress = '196.24.150.228';
-userName = 'jetson';
-password = 'jetson';
+deviceAddress = '196.xx.xxx.xxx';
+userName = 'jetsonName';
+password = 'jetsonPassword';
 
 disp("Building grayCameraRos2 for Jetson (ROS 2 + CUDA library)...");
 
@@ -14,7 +14,6 @@ cfg.Hardware.RemoteDeviceAddress = deviceAddress;
 cfg.Hardware.RemoteDeviceUsername = userName;
 cfg.Hardware.RemoteDevicePassword = password;
 cfg.Hardware.DeployTo = 'Remote Device';
-%cfg.Hardware.BuildAction = 'Build and Load';
 cfg.Hardware.BuildAction = 'None';
 cfg.GenerateReport = true;
 
@@ -25,7 +24,7 @@ cfg.GenerateReport = true;
 % cfg.CustomLibrary = {fullfile(libPath, 'gpuGrayscale.so')};
 % cfg.CustomSourceCode = '#include "gpuGrayscale.h"';
 
-libPath = 'C:\Users\lithe\OneDrive\BNNLIT002\Documents\MATLAB\2025_Dec_Vac_Work\project3\codegen\dll\gpuGrayscale';
+libPath = 'C:\projectPath\codegen\dll\gpuGrayscale';
 cfg.CustomInclude = {libPath};
 cfg.CustomLibrary = {fullfile(libPath, 'gpuGrayscale.so')};
 cfg.CustomSourceCode = '#include "gpuGrayscale.h"';
@@ -36,3 +35,4 @@ codegen -config cfg grayCameraRos2 -report
 
 disp("grayCameraRos2 build complete. You can now run:");
 disp("  ros2 run gray_camera_ros2 grayCameraRos2");
+
