@@ -60,7 +60,7 @@ After you have successfully tested your library with CUDA alone, you can move to
         ├── package.xml<br>
         └── CMakeLists.txt<br>
 4. Copy CUDA Library
-   - Place the gpuGrayscale.so shared library in your ROS2 package folder:
+   - Copy the gpuGrayscale.so shared library to your ROS2 package folder:
      ``` bash
      ros2_ws/src/graycameraros2/lib/libgpuGrayscale.so # Might have to create lib if it doesn't exist 
      ```
@@ -88,6 +88,7 @@ After you have successfully tested your library with CUDA alone, you can move to
    -DROS2_PROJECT
    -DSTACK_SIZE=200000
    -DMODEL=grayCameraRos2
+   > 						# <--- Do NOT remove this line
    )
    ```
    - Add this after **ament_target_dependencies(...)** before **target_link_directories(...)**:
@@ -214,4 +215,16 @@ After you have successfully tested your library with CUDA alone, you can move to
        gNodePtr.reset();    //Put this line before ...
        rcl::shutdown();     //ths line
      ```
-
+3. When you are trying to build your code, and you get this error:
+   ``` c
+   [ 23%] Building CXX object CMakeFiles/invertCameraRos2.dir/src/builtin_interfaces_TimeStruct.cpp.o
+	cc: error: $<1:: No such file or directory
+	/usr/bin/c++  -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"invertcameraros2\" -I/usr/include/gstreamer-1.0 -I/usr/include/orc-0.4 -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/home/jetson/ros2_ws/src/invertcameraros2/include/invertcameraros2/C/ProgramData/MATLAB/SupportPackages/R2024b/toolbox/target/supportpackages/nvidia/sources/server -I/home/jetson/ros2 
+   ```
+   The error is caused by a malformed compiler flag in your CMake build configuration. So make sure you have **>** at the end of **target_compile_options(grayCameraRos2 PRIVATE ...)** on your CMakeLists.txt file.<br>
+   Then try cleaning and rebuilding:
+   ``` bash
+   cd ~/ros2_ws
+   rm -rf build/graycameraros2 install/graycameraros2 log/graycameraros2
+   colcon build --packages-select graycameraros2 --event-handlers console_direct+
+  ```
