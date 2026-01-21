@@ -99,6 +99,7 @@ After you have successfully tested your library with CUDA alone, you can move to
    link_directories(/usr/local/cuda-10.2/targets/aarch64-linux/lib ${CMAKE_CURRENT_SOURCE_DIR}/lib) #path to CUDA libs + path to custom lib
    link_directories(${GST_LIBRARY_DIRS})
    ```
+   **NB: All changes made to the CMakeLists.txt can be found in detail in the updated CMakeLists file in the grayCam folder.**
  6. Build and run
     ``` bash
     cd ~/ros2_ws
