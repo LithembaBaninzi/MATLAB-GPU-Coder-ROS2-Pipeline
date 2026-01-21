@@ -88,7 +88,6 @@ After you have successfully tested your library with CUDA alone, you can move to
    -DROS2_PROJECT
    -DSTACK_SIZE=200000
    -DMODEL=grayCameraRos2
-   >
    )
    ```
    - Add this after **ament_target_dependencies(...)** before **target_link_directories(...)**:
@@ -99,8 +98,28 @@ After you have successfully tested your library with CUDA alone, you can move to
    link_directories(/usr/local/cuda-10.2/targets/aarch64-linux/lib ${CMAKE_CURRENT_SOURCE_DIR}/lib) #path to CUDA libs + path to custom lib
    link_directories(${GST_LIBRARY_DIRS})
    ```
+   - Edit **target_link_libraries(grayCameraRos2 ...)** to use your linked directories to search for the specified libraries 
+   ``` c
+   target_link_libraries(grayCameraRos2 
+	   ${GSTREAMER_APP_1_0GSTREAMER_VIDEO_1_0_LIBRARIES}
+      # coder_custom_lib_1               <--- Remove this line
+      gpuGrayscale                     # <--- Add this line 
+      SDL
+      cublas
+      cufft
+      curand
+      cusolver
+      cusparse
+    )
+   ```
+   - Then add this after **ament_export_include_directories(include)**
+   ``` c
+   # Install custom GPU library
+   install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/libgpuGrayscale.so
+     DESTINATION lib)
+   ```
    **NB: All changes made to the CMakeLists.txt can be found in detail in the updated CMakeLists file in the grayCam folder.**
- 6. Build and run
+ 7. Build and run
     ``` bash
     cd ~/ros2_ws
     colcon build --packages-select graycameraros2 --event-handlers console_direct+
