@@ -125,6 +125,7 @@ After you have successfully tested your library with CUDA alone, you can move to
     cd ~/ros2_ws
     colcon build --packages-select graycameraros2 --event-handlers console_direct+
     source install/setup.bash
+    export ROS_DOMAIN_ID=0 		# So you can run a subscriber on the same Domain ID
     ros2 run graycameraros2 grayCameraRos2
     ```
     After a successful build and install an executable ***grayCameraRos2*** will be installed under:<br>
