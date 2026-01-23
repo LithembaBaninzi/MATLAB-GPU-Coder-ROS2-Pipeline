@@ -228,4 +228,15 @@ After you have successfully tested your library with CUDA alone, you can move to
    cd ~/ros2_ws
    rm -rf build/graycameraros2 install/graycameraros2 log/graycameraros2
    colcon build --packages-select graycameraros2 --event-handlers console_direct+
-  ```
+  
+4. When running a ros2 topic and you get this error
+   ``` c
+   2026-01-23 10:05:26.714 [RTPS_TRANSPORT_SHM Error] Failed init_port fastrtps_port7411: open_and_lock_file failed -> Function open_port_internal
+   ```
+   This error indicates a Shared Memory (SHM) transport issue with Fast DDS in ROS2.<br> 
+   Here's how to fix it:
+   ``` bash 
+   sudo rm -rf /dev/shm/* 		# Clean up existing semaphores and shared memory files
+   echo "export RMW_IMPLEMENTATION=rmw_fastrtps_cpp" >> ~/.bashrc
+   source ~/.bashrc   # Permanently set the RMW implementation
+
