@@ -1,8 +1,8 @@
 %%
 clear;
-deviceAddress = '196.24.150.228'; %SSH IP address
-userName = 'jetson';
-password = 'jetson';
+deviceAddress = '196.xxx.xxx.xxx'; %SSH IP address
+userName = 'jetsonUsername';
+password = 'jetsonPassword';
 hwobj = jetson(deviceAddress,userName,password);
 %% 
 
