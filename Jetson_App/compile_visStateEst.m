@@ -1,7 +1,7 @@
 clear;
-deviceAddress = '196.24.150.228'; %SSH IP address
-userName = 'jetson';
-password = 'jetson';
+deviceAddress = '196.xxx.xxx.xxx'; %SSH IP address
+userName = 'jetsonUsername';
+password = 'jetsonPassword';
 hwobj = jetson(deviceAddress,userName,password);
 
 
@@ -22,7 +22,7 @@ cfg.GenerateReport = true;
 %hwobj.setDisplayEnvironment('0.0');
 
 % Link external CUDA library
-libPath = 'C:\Users\lithe\OneDrive\BNNLIT002\Documents\MATLAB\2025_Dec_Vac_Work\camApp\visualStateEstimator\codegen\dll\nanoP3p';
+libPath = 'pathToLib\visualStateEstimator\codegen\dll\nanoP3p';
 %libPath = 'codegen\dll\nanoP3p\nanoP3p.so';
 cfg.CustomInclude = {libPath};
 cfg.CustomLibrary = {fullfile(libPath, 'nanoP3p.so')};
