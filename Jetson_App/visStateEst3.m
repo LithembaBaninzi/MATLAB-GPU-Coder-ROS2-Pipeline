@@ -51,7 +51,7 @@ function visStateEst3()
     
     while ~shouldExit
         % Poll for new commands (instead of callback)
-        [cmd_msg, cmd_ok] = receive(commandSub, 0.001);  % Non-blocking
+        [cmd_msg, cmd_ok] = receive(commandSub, 0.05);  % Non-blocking
         
         if cmd_ok
             command = char(cmd_msg.data);
@@ -165,4 +165,5 @@ msg = ros2message(pub);
 msg.data = char(txt);
 send(pub, msg);
 fprintf("[STATUS] %s\n", txt);
+
 end
