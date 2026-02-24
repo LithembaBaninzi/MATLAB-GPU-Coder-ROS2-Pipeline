@@ -6,7 +6,7 @@ A comprehensive MATLAB-based system for real-time camera pose estimation on NVID
 
 
 ---
-<img width="1302" height="627" alt="UI screenshort " src="https://github.com/user-attachments/assets/58d55eb5-6a1c-4bd8-88c0-0b85d559142b" />
+<img width="660" height="391" alt="image" src="https://github.com/user-attachments/assets/477b9ed5-605d-46b9-a3f1-756db8bf037d" />
 
 ---
 
