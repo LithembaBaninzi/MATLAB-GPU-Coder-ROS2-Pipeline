@@ -27,6 +27,8 @@ The system demonstrates:
 ---
 
 ## 🔹 System Architecture
+<img width="761" height="61" alt="System_archive drawio" src="https://github.com/user-attachments/assets/cdb18923-dac2-49bd-9ec3-e1e2ce9a02c6" />
+
 
 ## 🔹 Solution
 This project implements a structured pipeline that:
