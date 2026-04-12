@@ -1,7 +1,7 @@
 function visStateEst3()
 %VISSTATEEST2 Visual state estimator with ROS2 control
 %   Listens for start/stop commands via ROS2 and publishes pose estimates
-%   Exits cleanly when stop command is received
+%   Exits cleanly when the stop command is received
 
 %% Initializations
     % Include library header
