@@ -1,9 +1,9 @@
 clear;
 % Build and deploy invertCameraEntry to Jetson using gpuInvert.so
 % Jetson device credentials
-deviceAddress = '196.24.150.228';
-userName = 'jetson';
-password = 'jetson';
+deviceAddress = 'xxx.xx.xxx.xxx';
+userName = 'jetsonName';
+password = 'jetsonPass';
 
 % Connect to Jetson
 hwobj = jetson(deviceAddress, userName, password);
@@ -23,7 +23,7 @@ cfg.GenerateExampleMain = 'GenerateCodeAndCompile';
 cfg.GenerateReport = true;
 
 % Path to the generated CUDA library (adjust this path!)
-libPath = 'C:\Users\lithe\OneDrive\BNNLIT002\Documents\MATLAB\2025_Dec_Vac_Work\project5\codegen\dll\gpuInvert';
+libPath = 'C:\Users\...\codegen\dll\gpuInvert';
 
 % Link the custom CUDA library
 cfg.CustomInclude  = {libPath};
