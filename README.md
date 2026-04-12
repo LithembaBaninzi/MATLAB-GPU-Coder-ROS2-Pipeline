@@ -10,7 +10,7 @@ This project builds an end-to-end pipeline that resolves these conflicts and ena
 ---
 
 ## 🔹 Demo
-🎥 *Demo video:* *(add your video link here)*  
+🎥 *Demo video:* *(https://www.capcut.com/view/7627935025950589456?workspaceId=7375932524549390353)*  
 
 The system demonstrates:
 - CUDA-accelerated processing on Jetson Nano  
