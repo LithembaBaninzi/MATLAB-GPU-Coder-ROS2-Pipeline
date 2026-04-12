@@ -1,6 +1,6 @@
-deviceAddress = '196.24.150.228';
-userName = 'jetson';
-password = 'jetson';
+deviceAddress = 'xxx.xx.xxx.xxx';
+userName = 'jetsonName';
+password = 'jetsonPass';
 hwobj = jetson(deviceAddress, userName, password);
 
 % Configure GPU environment
