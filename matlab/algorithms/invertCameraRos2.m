@@ -2,12 +2,6 @@ function invertCameraRos2()
 %#codegen
 % Jetson standalone ROS2 publisher: camera + CUDA inversion
 
-    % % --- Jetson credentials ---
-    % deviceAddress = '196.24.150.228';
-    % userName = 'jetson';
-    % password = 'jetson';
-    % hwobj = jetson(deviceAddress, userName, password);
-
     % --- External includes ---
     coder.cinclude('gpuInvert.h');
 
